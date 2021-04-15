@@ -184,7 +184,9 @@ echo $ANSWER
 #read -e ANSWER
 if [ -z $ANSWER ] || [ $ANSWER = 'Y' ] || [ $ANSWER = 'y' ]; then
         cd $HOMEFOLDER
-        wget -O - "http://192.53.127.188/ChainDB.tar.gz" -q --show-progress | tar -xzf -
+        wget https://nkn.org/ChainDB_pruned_latest.zip
+        sudo cpulimit -l 60 unzip ChainDB_pruned_latest.zip | tr '\n' '\r' > /dev/null 2>&1
+        rm -rf ChainDB_pruned_latest.zip
 fi       
 
 echo -e "${CYAN}Starting nkn service...${NC}"
